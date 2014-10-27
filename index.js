@@ -2,40 +2,50 @@
 
 var fs = require('fs');
 
+var Promise = require('bluebird');
+
 var TemplateParser = require('./lib/TemplateParser');
 var commands = require('./lib/commands');
+var readStream = require('./lib/readStream');
 
 var dataPath = process.argv[2];
-var data = null;
 
-if (dataPath) {
-	data = JSON.parse(fs.readFileSync(dataPath).toString());
-} else {
-	data = {
-		text: 'hello',
-		person: {
-			name: 'Cy'
-		},
-		numbers: [7, 13, 21],
-		trueValue: true,
-		falseValue: false,
-		'var': 'outside use',
-		'in': {
-			'var': 'inside use'
-		}
-	};
-}
+var templateParser = new TemplateParser();
+templateParser.commands = commands;
 
-var buffers = [];
-
-process.stdin.on('data', function (buffer) {
-	buffers.push(buffer);
-});
-
-process.stdin.on('end', function () {
-	var template = Buffer.concat(buffers);
-	var templateParser = new TemplateParser();
+new Promise(function (resolve, reject) {
+	if (dataPath) {
+		fs.readFile(dataPath, function (err, data) {
+			if (err) {
+				reject(err);
+			} else {
+				try {
+					resolve(JSON.parse(data.toString()));
+				} catch (e) {
+					reject(e);
+				}
+			}
+		});
+	} else {
+		resolve({
+			text: 'hello',
+			person: {
+				name: 'Cy'
+			},
+			numbers: [7, 13, 21],
+			trueValue: true,
+			falseValue: false,
+			'var': 'outside use',
+			'in': {
+				'var': 'inside use'
+			}
+		});
+	}
+}).then(function (data) {
 	templateParser.context = data;
-	templateParser.commands = commands;
+	return readStream(process.stdin);
+}).then(function (template) {
 	templateParser.parse(template);
+}).catch(function (err) {
+	console.error(err);
 });
