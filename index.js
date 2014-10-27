@@ -7,15 +7,21 @@ var Promise = require('bluebird');
 var TemplateParser = require('./lib/TemplateParser');
 var commands = require('./lib/commands');
 var readStream = require('./lib/readStream');
-
-var dataPath = process.argv[2];
+var args = require('commander');
 
 var templateParser = new TemplateParser();
 templateParser.commands = commands;
 
+args
+	.version('0.0.1')
+	.usage('[options] <template files ...>')
+	.option('-d, --data [dataFile]', 'JSON data file')
+	.option('-e, --e')
+	.parse(process.argv);
+
 new Promise(function (resolve, reject) {
-	if (dataPath) {
-		fs.readFile(dataPath, function (err, data) {
+	if (args.data) {
+		fs.readFile(args.data, function (err, data) {
 			if (err) {
 				reject(err);
 			} else {
@@ -43,9 +49,15 @@ new Promise(function (resolve, reject) {
 	}
 }).then(function (data) {
 	templateParser.context = data;
-	return readStream(process.stdin);
+	var streamToRead = null;
+	if (args.args[0] === '-') {
+		streamToRead = process.stdin;
+	} else {
+		streamToRead = fs.createReadStream(args.args[0])
+	}
+	return readStream(streamToRead);
 }).then(function (template) {
 	templateParser.parse(template);
 }).catch(function (err) {
-	console.error(err);
+	console.error(err.stack);
 });

@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "angular-expressions": "^0.2.1",
-    "bluebird": "^2.3.6"
+    "bluebird": "^2.3.6",
+    "commander": "^2.5.0"
   }
 }
