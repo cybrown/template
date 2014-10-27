@@ -1,3 +1,3 @@
-<%defineBlock foo>Block content: <$var></%defineBlock
-><%block foo></%block>
-<%use object><%block foo></%block></%use>
+<%defineBlock foo>Foo Block: <$var>, with content: <%blockContent _></></%defineBlock
+><%block foo>The First Content !!</%block>
+<%use object><%block foo>The Second Content <$var> !</%block></%use>
