@@ -1,0 +1,6 @@
+{
+	"var": "outside use",
+	"in": {
+		"var": "inside use"
+	}
+}

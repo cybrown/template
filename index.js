@@ -33,19 +33,7 @@ new Promise(function (resolve, reject) {
 			}
 		});
 	} else {
-		resolve({
-			text: 'hello',
-			person: {
-				name: 'Cy'
-			},
-			numbers: [7, 13, 21],
-			trueValue: true,
-			falseValue: false,
-			'var': 'outside use',
-			'in': {
-				'var': 'inside use'
-			}
-		});
+		resolve({});
 	}
 }).then(function (data) {
 	templateParser.context = data;
