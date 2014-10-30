@@ -1,0 +1,87 @@
+{
+	"version": {
+		"minor": 0,
+		"major": 51
+	},
+	"constants": [
+		{
+			"type": "MethodRef",
+			"classIndex": 3,
+			"nameAndTypeIndex": 10
+		},
+		{
+			"type": "Class",
+			"nameIndex": 11
+		},
+		{
+			"type": "Class",
+			"nameIndex": 12
+		},
+		{
+			"type": "Utf8",
+			"value": "<init>"
+		},
+		{
+			"type": "Utf8",
+			"value": "()V"
+		},
+		{
+			"type": "Utf8",
+			"value": "Code"
+		},
+		{
+			"type": "Utf8",
+			"value": "LineNumberTable"
+		},
+		{
+			"type": "Utf8",
+			"value": "SourceFile"
+		},
+		{
+			"type": "Utf8",
+			"value": "Foo.java"
+		},
+		{
+			"type": "NameAndType",
+			"nameIndex": 4,
+			"descriptorIndex": 5
+		},
+		{
+			"type": "Utf8",
+			"value": "Foo"
+		},
+		{
+			"type": "Utf8",
+			"value": "java/lang/Object"
+		}
+	],
+	"accessFlags": 33,
+	"thisClassIndex": 2,
+	"superClassIndex": 3,
+	"interfaces": [],
+	"fields": [],
+	"methods": [
+		{
+			"accessFlags": 1,
+			"nameIndex": 4,
+			"descriptorIndex": 5,
+			"attributes": [
+				{
+					"nameIndex": 6,
+					"info": [
+						0, 1, 0, 1, 0, 0, 0, 5,
+						42, 183, 0, 1, 177, 0, 0, 0,
+						1, 0, 7, 0, 0, 0, 6, 0,
+						1, 0, 0, 0, 1
+					]
+				}
+			]
+		}
+	],
+	"attributes": [
+		{
+			"nameIndex": 8,
+			"info": [0, 9]
+		}
+	]
+}
