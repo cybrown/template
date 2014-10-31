@@ -1,8 +1,8 @@
 'use strict';
 
-var fs = require('fs');
-
 var Promise = require('bluebird');
+
+var fs = Promise.promisifyAll(require('fs'));
 
 var TemplateParser = require('./lib/TemplateParser');
 var readStream = require('./lib/readStream');
@@ -19,7 +19,7 @@ args
 	.parse(process.argv);
 
 ifAsync(args.data, function () {
-	return Promise.promisify(fs.readFile)(args.data).then(function (data) {
+	return fs.readFileAsync(args.data).then(function (data) {
 		return JSON.parse(data.toString());
 	});
 }, function () {
@@ -27,7 +27,7 @@ ifAsync(args.data, function () {
 }).then(function (data) {
 	templateParser.context = data;
 	var streamToRead = null;
-	if (args.args[0] === '-') {
+	if (!args.args.length || args.args[0] === '-') {
 		streamToRead = process.stdin;
 	} else {
 		streamToRead = fs.createReadStream(args.args[0])
