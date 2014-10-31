@@ -7,6 +7,50 @@
 		</%loop>
 	</%defineBlock>
 
+	<%defineBlock accessFlags>
+		<%set accessFlagsValue 0></%set>
+		<%if public>
+			<%set accessFlagsValue setFlag(accessFlagsValue, 0)></%set>
+		</%if>
+		<%if private>
+			<%set accessFlagsValue setFlag(accessFlagsValue, 1)></%set>
+		</%if>
+		<%if protected>
+			<%set accessFlagsValue setFlag(accessFlagsValue, 2)></%set>
+		</%if>
+		<%if static>
+			<%set accessFlagsValue setFlag(accessFlagsValue, 3)></%set>
+		</%if>
+		<%if final>
+			<%set accessFlagsValue setFlag(accessFlagsValue, 4)></%set>
+		</%if>
+		<%if super>
+			<%set accessFlagsValue setFlag(accessFlagsValue, 5)></%set>
+		</%if>
+		<%if volatile>
+			<%set accessFlagsValue setFlag(accessFlagsValue, 6)></%set>
+		</%if>
+		<%if transient>
+			<%set accessFlagsValue setFlag(accessFlagsValue, 7)></%set>
+		</%if>
+		<%if interface>
+			<%set accessFlagsValue setFlag(accessFlagsValue, 9)></%set>
+		</%if>
+		<%if abstract>
+			<%set accessFlagsValue setFlag(accessFlagsValue, 10)></%set>
+		</%if>
+		<%if synthetic>
+			<%set accessFlagsValue setFlag(accessFlagsValue, 12)></%set>
+		</%if>
+		<%if annotation>
+			<%set accessFlagsValue setFlag(accessFlagsValue, 13)></%set>
+		</%if>
+		<%if enum>
+			<%set accessFlagsValue setFlag(accessFlagsValue, 14)></%set>
+		</%if>
+		<%bin u16be accessFlagsValue></%bin>
+	</%defineBlock>
+
 	<%bin u8 202></%bin>
 	<%bin u8 254></%bin>
 	<%bin u8 186></%bin>
@@ -45,7 +89,9 @@
 			</%if>
 		</%use>
 	</%loop>
-	<%bin u16be accessFlags></%bin>
+	<%use accessFlags>
+		<%block accessFlags></%block>
+	</%use>
 	<%bin u16be thisClassIndex></%bin>
 	<%bin u16be superClassIndex></%bin>
 	<%bin u16be interfaces.length></%bin>
@@ -53,7 +99,9 @@
 	<%bin u16be methods.length></%bin>
 	<%loop method methods>
 		<%use method>
-			<%bin u16be accessFlags></%bin>
+			<%use accessFlags>
+				<%block accessFlags></%block>
+			</%use>
 			<%bin u16be nameIndex></%bin>
 			<%bin u16be descriptorIndex></%bin>
 			<%bin u16be attributes.length></%bin>

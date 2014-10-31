@@ -55,14 +55,19 @@
 			"value": "java/lang/Object"
 		}
 	],
-	"accessFlags": 33,
+	"accessFlags": {
+		"public": true,
+		"super": true
+	},
 	"thisClassIndex": 2,
 	"superClassIndex": 3,
 	"interfaces": [],
 	"fields": [],
 	"methods": [
 		{
-			"accessFlags": 1,
+			"accessFlags": {
+				"public": true
+			},
 			"nameIndex": 4,
 			"descriptorIndex": 5,
 			"attributes": [
