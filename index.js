@@ -5,12 +5,10 @@ var fs = require('fs');
 var Promise = require('bluebird');
 
 var TemplateParser = require('./lib/TemplateParser');
-var commands = require('./lib/commands');
 var readStream = require('./lib/readStream');
 var args = require('commander');
 
 var templateParser = new TemplateParser();
-templateParser.commands = commands;
 
 args
 	.version('0.0.1')
