@@ -15,7 +15,7 @@
 	<%bin u16be version.minor></%bin>
 	<%bin u16be version.major></%bin>
 
-	<%bin u16be constants.length></%bin>
+	<%bin u16be constants.length + 1></%bin>
 	<%loop constant constants>
 		<%use constant>
 			<%if type == 'Integer'>
