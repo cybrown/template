@@ -7,6 +7,7 @@ var Promise = require('bluebird');
 var TemplateParser = require('./lib/TemplateParser');
 var readStream = require('./lib/readStream');
 var args = require('commander');
+var ifAsync = require('./lib/if-async')(require('./lib/when'));
 
 var templateParser = new TemplateParser();
 
@@ -17,22 +18,12 @@ args
 	.option('-e, --e')
 	.parse(process.argv);
 
-new Promise(function (resolve, reject) {
-	if (args.data) {
-		fs.readFile(args.data, function (err, data) {
-			if (err) {
-				reject(err);
-			} else {
-				try {
-					resolve(JSON.parse(data.toString()));
-				} catch (e) {
-					reject(e);
-				}
-			}
-		});
-	} else {
-		resolve({});
-	}
+ifAsync(args.data, function () {
+	return Promise.promisify(fs.readFile)(args.data).then(function (data) {
+		return JSON.parse(data.toString());
+	});
+}, function () {
+	return {};
 }).then(function (data) {
 	templateParser.context = data;
 	var streamToRead = null;
