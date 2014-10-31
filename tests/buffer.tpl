@@ -1,8 +1,9 @@
 <%option mute true>
 	<$ 'a'>
 	<%buffer buf>
-		<$ 'b'>
+		<$ 'c'>
 	</%buffer>
-	<$ 'c'>
+	<$ 'b'>
 	<$ buf>
+	<$ 'd'>
 </%option>
