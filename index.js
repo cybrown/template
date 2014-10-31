@@ -26,6 +26,9 @@ ifAsync(args.data, function () {
 	return {};
 }).then(function (data) {
 	templateParser.context = data;
+	templateParser.context.setFlag = function (value, pos) {
+		return value | Math.pow(2, pos);
+	};
 	var streamToRead = null;
 	if (!args.args.length || args.args[0] === '-') {
 		streamToRead = process.stdin;
