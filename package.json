@@ -13,5 +13,9 @@
     "bluebird": "^2.3.6",
     "commander": "^2.5.0",
     "memory-stream": "0.0.3"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-mocha-cli": "^1.10.0"
   }
 }
