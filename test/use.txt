@@ -1,0 +1,2 @@
+First context: outside use
+In context: inside use
