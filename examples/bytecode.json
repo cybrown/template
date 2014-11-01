@@ -25,6 +25,10 @@
 			"type": "Utf8",
 			"value": "()V"
 		},
+
+
+
+
 		{
 			"type": "Utf8",
 			"value": "Code"
@@ -46,6 +50,10 @@
 			"nameIndex": 4,
 			"descriptorIndex": 5
 		},
+
+
+
+
 		{
 			"type": "Utf8",
 			"value": "Foo"
@@ -53,6 +61,84 @@
 		{
 			"type": "Utf8",
 			"value": "java/lang/Object"
+		},
+		{
+			"type": "Utf8",
+			"value": "main"
+		},
+		{
+			"type": "Utf8",
+			"value": "([Ljava/lang/String;)V"
+		},
+		{
+			"type": "String",
+			"index": 16
+		},
+
+
+
+
+		{
+			"type": "Utf8",
+			"value": "Hello, World !"
+		},
+		{
+			"type": "FieldRef",
+			"classIndex": 18,
+			"nameAndTypeIndex": 19
+		},
+		{
+			"type": "Class",
+			"nameIndex": 20
+		},
+		{
+			"type": "NameAndType",
+			"nameIndex": 21,
+			"descriptorIndex": 22
+		},
+		{
+			"type": "Utf8",
+			"value": "java/lang/System"
+		},
+
+
+
+		{
+			"type": "Utf8",
+			"value": "out"
+		},
+		{
+			"type": "Utf8",
+			"value": "Ljava/io/PrintStream;"
+		},
+		{
+			"type": "MethodRef",
+			"classIndex": 24,
+			"nameAndTypeIndex": 25
+		},
+		{
+			"type": "Class",
+			"nameIndex": 26
+		},
+		{
+			"type": "NameAndType",
+			"nameIndex": 27,
+			"descriptorIndex": 28
+		},
+
+
+
+		{
+			"type": "Utf8",
+			"value": "java/io/PrintStream"
+		},
+		{
+			"type": "Utf8",
+			"value": "println"
+		},
+		{
+			"type": "Utf8",
+			"value": "(Ljava/lang/String;)V"
 		}
 	],
 	"accessFlags": {
@@ -73,12 +159,42 @@
 			"attributes": [
 				{
 					"nameIndex": 6,
-					"info": [
-						0, 1, 0, 1, 0, 0, 0, 5,
-						42, 183, 0, 1, 177, 0, 0, 0,
-						1, 0, 7, 0, 0, 0, 6, 0,
-						1, 0, 0, 0, 1
-					]
+					"info": {
+						"type": "Code",
+						"maxStack": 1,
+						"maxLocals": 1,
+						"code": [42, 183, 0, 1, 177],
+						"startPc": 0,
+						"endPc": 1,
+						"handlerPc": 7,
+						"catchType": 0,
+						"attributes": [0, 6, 0, 1, 0, 0, 0, 1]
+					}
+				}
+			]
+		},
+		{
+			"accessFlags": {
+				"public": true,
+				"static": true
+			},
+			"nameIndex": 13,
+			"descriptorIndex": 14,
+			"attributes": [
+				{
+					"nameIndex": 6,
+					"info": {
+						"type": "Code",
+						"maxStack": 2,
+						"maxLocals": 1,
+						"code": [178, 0, 17, 18, 15, 182, 0, 23, 177],
+						"_code": [177],
+						"startPc": 0,
+						"endPc": 1,
+						"handlerPc": 7,
+						"catchType": 0,
+						"attributes": [0, 6, 0, 1, 0, 0, 0, 1]
+					}
 				}
 			]
 		}
@@ -86,7 +202,7 @@
 	"attributes": [
 		{
 			"nameIndex": 8,
-			"info": [0, 9]
+			"rawInfo": [0, 9]
 		}
 	]
 }

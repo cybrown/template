@@ -1,10 +1,35 @@
 <%option mute true>
 	<%defineBlock attribute>
 		<%bin u16be nameIndex></%bin>
-		<%bin u32be info.length></%bin>
-		<%loop byte info>
-			<%bin u8 byte></%bin>
-		</%loop>
+		<%if info>
+			<%use info>
+				<%buffer buf>
+					<%if type == 'Code'>
+						<%bin u16be maxStack></%bin>
+						<%bin u16be maxLocals></%bin>
+						<%bin u32be code.length></%bin>
+						<%loop byte code>
+							<%bin u8 byte></%bin>
+						</%loop>
+						<%bin u16be startPc></%bin>
+						<%bin u16be endPc></%bin>
+						<%bin u16be handlerPc></%bin>
+						<%bin u16be catchType></%bin>
+						<%loop byte attributes>
+							<%bin u8 byte></%bin>
+						</%loop>
+					</%if>
+				</%buffer>
+				<%bin u32be buf.length></%bin>
+				<$ buf>
+			</%use>
+		</%if>
+		<%if rawInfo>
+			<%bin u32be rawInfo.length></%bin>
+			<%loop byte rawInfo>
+				<%bin u8 byte></%bin>
+			</%loop>
+		</%if>
 	</%defineBlock>
 
 	<%defineBlock accessFlags>
@@ -86,6 +111,15 @@
 				<%bin u8 12></%bin>
 				<%bin u16be nameIndex></%bin>
 				<%bin u16be descriptorIndex></%bin>
+			</%if>
+			<%if type == 'String'>
+				<%bin u8 8></%bin>
+				<%bin u16be index></%bin>
+			</%if>
+			<%if type == 'FieldRef'>
+				<%bin u8 9></%bin>
+				<%bin u16be classIndex></%bin>
+				<%bin u16be nameAndTypeIndex></%bin>
 			</%if>
 		</%use>
 	</%loop>
